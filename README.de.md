@@ -1,22 +1,24 @@
-# GPGPU - General Purpose Computation on Graphics Processing Unit with Metal
+# GPGPU - Allgemeine Berechnungen auf der Grafikkarte mit Metal
 
-👉 [🇩🇪](README.de.md)
---- 
+👉 [🇺🇸](README.md) 
+---
 
-## You´re in the right place of
+GPGPU (🇺🇸 General Purpose Computation on Graphics Processing Unit)  
 
-* your interests are in the general computing on GPU not graphic processing,
-* your interests are on Metal API from Apple Inc,
-* your interests are on GPGPU on Apple products.
+## Du bist am richtigen Ort, wennYou´re in the right place of
 
-All others, thank for visit, bye 👋
+* dein Interesse die allgemeinen Berechnungen auf der GPU betrifft, nicht jedoch Grafikprogrammierung,
+* dein Interesse der Metal API von Apple Inc gilt,
+* dein Interesse die GPGPU auf Apple Produkten beinhaltet.
+
+Allen Anderen sei Dank für den Besuch gesagt und Tschüss 👋
 
 
-## references
+## Quellen
 
 ### GPGPU mit Metal
 
-* 🇺🇸 Objectiv-C [Performing Calculations on a GPU](https://developer.apple.com/documentation/metal/performing_calculations_on_a_gpu), Apple Inc.
+* 🇺🇸 Objective-C [Performing Calculations on a GPU](https://developer.apple.com/documentation/metal/performing_calculations_on_a_gpu), Apple Inc.
 
 ### Metal
 
