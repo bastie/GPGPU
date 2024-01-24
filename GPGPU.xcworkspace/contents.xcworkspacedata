@@ -10,4 +10,7 @@
    <FileRef
       location = "group:README.de.md">
    </FileRef>
+   <FileRef
+      location = "group:/Users/bastie/Documents/workspace/GPGPU/README.pt.md">
+   </FileRef>
 </Workspace>

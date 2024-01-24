@@ -80,8 +80,8 @@
 		481974032B4439CB00F4535B /* pt 🇵🇹🇧🇷 */ = {
 			isa = PBXGroup;
 			children = (
-				481974102B443D7100F4535B /* GPUFluxoDeTrabalho.swift */,
 				4819740A2B443AB700F4535B /* GPUFunção.metal */,
+				481974102B443D7100F4535B /* GPUFluxoDeTrabalho.swift */,
 			);
 			path = "pt 🇵🇹🇧🇷";
 			sourceTree = "<group>";
@@ -98,8 +98,8 @@
 		481974052B4439F200F4535B /* de 🇩🇪🇦🇹🇨🇭 */ = {
 			isa = PBXGroup;
 			children = (
-				481973FC2B442F0F00F4535B /* GPUArbeitsablauf.swift */,
 				481974062B443A3B00F4535B /* GPUFunktion.metal */,
+				481973FC2B442F0F00F4535B /* GPUArbeitsablauf.swift */,
 			);
 			path = "de 🇩🇪🇦🇹🇨🇭";
 			sourceTree = "<group>";

@@ -1,9 +1,7 @@
-//
-//  main.swift
-//  GPUWorkflow
-//
-//  Created by Sebastian Ritter on 02.01.24.
-//
+/*
+ * SPDX-FileCopyrightText: 2023 - Sebastian Ritter <bastie@users.noreply.github.com>
+ * SPDX-License-Identifier: MIT
+ */
 
 import Foundation
 import Metal
@@ -27,7 +25,7 @@ import Metal
 /// | `command encoder` | Übersetzung der API Aufrufe in die GPU Hardwareanweisungen, speziell der `compute command encoder` |
 /// | `state` | Konfiguration |
 /// | `code` | Die `shader` |
-/// | `resources` |  Datenpuffer, Texturen etc. |
+/// | `resources` | Datenpuffer, Texturen etc. |
 struct GPUArbeitsablauf {
   
   /// Start der Anwendung
@@ -41,9 +39,9 @@ struct GPUArbeitsablauf {
 
     // Die GPU ermitteln
     let gpuDevice = arbeitsablauf.lookingForGPU(andPrintInfo : false)
-    // Die Bibliothek mit den Funktionen laden
+    // Die Bibliothek mit den GPU Funktionen laden
     let bibliothek = arbeitsablauf.ladeMetalBibliothek(für: gpuDevice)
-    // Die aufzurufende Funktion referenzieren und die commandQueue erstellen
+    // Die aufzurufende Funktion referenzieren und die "command queue" erstellen
     let aufzurufendeFunktion = "gpuFunktion"
     if let kernel = bibliothek.makeFunction(name: aufzurufendeFunktion), let commandQueue = gpuDevice.makeCommandQueue() {
 
@@ -70,9 +68,9 @@ struct GPUArbeitsablauf {
           
           // Wir müssen die Anzahl unserer Verarbeitungen angeben. Dies darf nicht mehr als die maximale Anzahl der Threads auf der GPU und auch nicht mehr als die maximale Anzahl der Threads pro Threadgroup sein. Bei 1024 könnte dies z.B. 2*8*64 sein oder auch 1024*1*1
           let breite = status.maxTotalThreadsPerThreadgroup
-          let threadsPerGrid : MTLSize = MTLSizeMake(breite,1, 1)
-          let threadsPerThreadgroup = MTLSizeMake(breite, 1, 1)
-          encoder.dispatchThreadgroups(threadsPerGrid, threadsPerThreadgroup: threadsPerThreadgroup)
+          let threadsProGrid : MTLSize = MTLSizeMake(breite,1, 1)
+          let threadsProThreadgroup = MTLSizeMake(breite, 1, 1)
+          encoder.dispatchThreadgroups(threadsProGrid, threadsPerThreadgroup: threadsProThreadgroup)
           
           // Für die Ausführung teilen wir zunächst mit, dass wir fertig sind (``endEncoding``) und das wir starten können (``commit``)
           encoder.endEncoding()
@@ -146,9 +144,9 @@ struct GPUArbeitsablauf {
       print ("Gemeinsam mit CPU genutzerte Speicher: \(device.hasUnifiedMemory)")
       print ("Monitor angeschlossen: \(!device.isHeadless)")
       print ("GPU entfernbar (eGPU): \(device.isRemovable)")
-      print ("Stromsparmodus; \(device.isLowPower)")
+      print ("Stromsparmodus: \(device.isLowPower)")
       print ("Speichergrenze ohne Performanceprobleme: \(String(describing: formatter.string(for: device.recommendedMaxWorkingSetSize)!)) Bytes")
-      print ("Thread in einer Gruppe: \(device.maxThreadsPerThreadgroup)")
+      print ("Maximale Threadanzahl pro Gruppe: \(device.maxThreadsPerThreadgroup)")
       print()
     }
 
