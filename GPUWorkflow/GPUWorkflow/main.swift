@@ -1,9 +1,8 @@
-//
-//  File.swift
-//  GPUWorkflow
-//
-//  Created by Sebastian Ritter on 02.01.24.
-//
+/*
+ * SPDX-FileCopyrightText: 2024 - Sebastian Ritter <bastie@users.noreply.github.com>
+ * SPDX-License-Identifier: MIT
+ */
+
 
 /// 🏃🏼💨💨💨
 
