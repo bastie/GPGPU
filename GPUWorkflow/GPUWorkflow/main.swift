@@ -14,8 +14,10 @@ private let lang = Locale.current.language.languageCode ?? .german
 switch lang {
 case .portuguese:
   print ("Bom dia! 🇵🇹🇧🇷")
+  GPUFluxoDeTrabalho.main()
 case .english :
   print ("Hello! 🇺🇸🇬🇧")
+  GPUWorkflow.main()
 case .german :
   print ("Sehr geehrte Damen, Herren und andere Geschlechter! 🇩🇪🇦🇹🇨🇭")
   GPUArbeitsablauf.main()
