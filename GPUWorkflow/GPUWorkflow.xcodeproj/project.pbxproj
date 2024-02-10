@@ -57,6 +57,9 @@
 		481973F02B442F0F00F4535B = {
 			isa = PBXGroup;
 			children = (
+				4866A5652B767D1400F4C8F4 /* README.md */,
+				4866A5662B77D1ED00F4C8F4 /* README.de.md */,
+				4866A5682B77D22900F4C8F4 /* README.pt.md */,
 				481973FB2B442F0F00F4535B /* GPUWorkflow */,
 				481973FA2B442F0F00F4535B /* Products */,
 			);
@@ -77,9 +80,6 @@
 				481974042B4439E500F4535B /* en 🇺🇸🇬🇧 */,
 				481974032B4439CB00F4535B /* pt 🇵🇹🇧🇷 */,
 				4819740C2B443BF800F4535B /* main.swift */,
-				4866A5652B767D1400F4C8F4 /* README.md */,
-				4866A5662B77D1ED00F4C8F4 /* README.de.md */,
-				4866A5682B77D22900F4C8F4 /* README.pt.md */,
 			);
 			path = GPUWorkflow;
 			sourceTree = "<group>";

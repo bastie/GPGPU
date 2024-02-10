@@ -1,6 +1,7 @@
 # O fluxo de trabalho da GPU
 
 | [👆](../README.pt.md) | 🫵 [🇩🇪](README.de.md) [🇺🇸](README.md) | 
+
 ---
 
 O fluxo de tarbalho da GPU contém as seguintes etapas
