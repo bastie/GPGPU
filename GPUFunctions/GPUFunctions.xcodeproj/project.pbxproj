@@ -7,18 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		481973FD2B442F0F00F4535B /* GPUArbeitsablauf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481973FC2B442F0F00F4535B /* GPUArbeitsablauf.swift */; };
-		481974072B443A3B00F4535B /* GPUFunktion.metal in Sources */ = {isa = PBXBuildFile; fileRef = 481974062B443A3B00F4535B /* GPUFunktion.metal */; };
-		481974092B443A6700F4535B /* GPUFunction.metal in Sources */ = {isa = PBXBuildFile; fileRef = 481974082B443A6700F4535B /* GPUFunction.metal */; };
-		4819740B2B443AB700F4535B /* GPUFunção.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4819740A2B443AB700F4535B /* GPUFunção.metal */; };
-		4819740D2B443BF800F4535B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4819740C2B443BF800F4535B /* main.swift */; };
-		4819740F2B443CCE00F4535B /* GPUWorkflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4819740E2B443CCE00F4535B /* GPUWorkflow.swift */; };
-		481974112B443D7100F4535B /* GPUFluxoDeTrabalho.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481974102B443D7100F4535B /* GPUFluxoDeTrabalho.swift */; };
-		4866A5672B77D1ED00F4C8F4 /* README.de.md in Sources */ = {isa = PBXBuildFile; fileRef = 4866A5662B77D1ED00F4C8F4 /* README.de.md */; };
+		4866A5572B752E7600F4C8F4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866A5562B752E7600F4C8F4 /* main.swift */; };
+		4866A5612B7531E700F4C8F4 /* GPUFunktion.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4866A55F2B7531E700F4C8F4 /* GPUFunktion.metal */; };
+		4866A5622B7531E700F4C8F4 /* GPUArbeitsablauf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866A5602B7531E700F4C8F4 /* GPUArbeitsablauf.swift */; };
+		4866A5642B75379000F4C8F4 /* GPUArbeitsablauf+erzeugeZufallsdaten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866A5632B75379000F4C8F4 /* GPUArbeitsablauf+erzeugeZufallsdaten.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		481973F72B442F0F00F4535B /* CopyFiles */ = {
+		4866A5512B752E7600F4C8F4 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -30,21 +26,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		481973F92B442F0F00F4535B /* GPUWorkflow */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GPUWorkflow; sourceTree = BUILT_PRODUCTS_DIR; };
-		481973FC2B442F0F00F4535B /* GPUArbeitsablauf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUArbeitsablauf.swift; sourceTree = "<group>"; };
-		481974062B443A3B00F4535B /* GPUFunktion.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = GPUFunktion.metal; sourceTree = "<group>"; };
-		481974082B443A6700F4535B /* GPUFunction.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = GPUFunction.metal; sourceTree = "<group>"; };
-		4819740A2B443AB700F4535B /* GPUFunção.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = "GPUFunção.metal"; sourceTree = "<group>"; };
-		4819740C2B443BF800F4535B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		4819740E2B443CCE00F4535B /* GPUWorkflow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUWorkflow.swift; sourceTree = "<group>"; };
-		481974102B443D7100F4535B /* GPUFluxoDeTrabalho.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPUFluxoDeTrabalho.swift; sourceTree = "<group>"; };
-		4866A5652B767D1400F4C8F4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		4866A5662B77D1ED00F4C8F4 /* README.de.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.de.md; sourceTree = "<group>"; };
-		4866A5682B77D22900F4C8F4 /* README.pt.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.pt.md; sourceTree = "<group>"; };
+		4866A5532B752E7600F4C8F4 /* GPUFunctions */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GPUFunctions; sourceTree = BUILT_PRODUCTS_DIR; };
+		4866A5562B752E7600F4C8F4 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		4866A55F2B7531E700F4C8F4 /* GPUFunktion.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = GPUFunktion.metal; sourceTree = "<group>"; };
+		4866A5602B7531E700F4C8F4 /* GPUArbeitsablauf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUArbeitsablauf.swift; sourceTree = "<group>"; };
+		4866A5632B75379000F4C8F4 /* GPUArbeitsablauf+erzeugeZufallsdaten.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPUArbeitsablauf+erzeugeZufallsdaten.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		481973F62B442F0F00F4535B /* Frameworks */ = {
+		4866A5502B752E7600F4C8F4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -54,59 +44,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		481973F02B442F0F00F4535B = {
+		4866A54A2B752E7600F4C8F4 = {
 			isa = PBXGroup;
 			children = (
-				481973FB2B442F0F00F4535B /* GPUWorkflow */,
-				481973FA2B442F0F00F4535B /* Products */,
+				4866A5552B752E7600F4C8F4 /* GPUFunctions */,
+				4866A5542B752E7600F4C8F4 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		481973FA2B442F0F00F4535B /* Products */ = {
+		4866A5542B752E7600F4C8F4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				481973F92B442F0F00F4535B /* GPUWorkflow */,
+				4866A5532B752E7600F4C8F4 /* GPUFunctions */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		481973FB2B442F0F00F4535B /* GPUWorkflow */ = {
+		4866A5552B752E7600F4C8F4 /* GPUFunctions */ = {
 			isa = PBXGroup;
 			children = (
-				481974052B4439F200F4535B /* de 🇩🇪🇦🇹🇨🇭 */,
-				481974042B4439E500F4535B /* en 🇺🇸🇬🇧 */,
-				481974032B4439CB00F4535B /* pt 🇵🇹🇧🇷 */,
-				4819740C2B443BF800F4535B /* main.swift */,
-				4866A5652B767D1400F4C8F4 /* README.md */,
-				4866A5662B77D1ED00F4C8F4 /* README.de.md */,
-				4866A5682B77D22900F4C8F4 /* README.pt.md */,
+				4866A55E2B7531E700F4C8F4 /* de 🇩🇪🇦🇹🇨🇭 */,
+				4866A5562B752E7600F4C8F4 /* main.swift */,
 			);
-			path = GPUWorkflow;
+			path = GPUFunctions;
 			sourceTree = "<group>";
 		};
-		481974032B4439CB00F4535B /* pt 🇵🇹🇧🇷 */ = {
+		4866A55E2B7531E700F4C8F4 /* de 🇩🇪🇦🇹🇨🇭 */ = {
 			isa = PBXGroup;
 			children = (
-				4819740A2B443AB700F4535B /* GPUFunção.metal */,
-				481974102B443D7100F4535B /* GPUFluxoDeTrabalho.swift */,
-			);
-			path = "pt 🇵🇹🇧🇷";
-			sourceTree = "<group>";
-		};
-		481974042B4439E500F4535B /* en 🇺🇸🇬🇧 */ = {
-			isa = PBXGroup;
-			children = (
-				481974082B443A6700F4535B /* GPUFunction.metal */,
-				4819740E2B443CCE00F4535B /* GPUWorkflow.swift */,
-			);
-			path = "en 🇺🇸🇬🇧";
-			sourceTree = "<group>";
-		};
-		481974052B4439F200F4535B /* de 🇩🇪🇦🇹🇨🇭 */ = {
-			isa = PBXGroup;
-			children = (
-				481974062B443A3B00F4535B /* GPUFunktion.metal */,
-				481973FC2B442F0F00F4535B /* GPUArbeitsablauf.swift */,
+				4866A55F2B7531E700F4C8F4 /* GPUFunktion.metal */,
+				4866A5602B7531E700F4C8F4 /* GPUArbeitsablauf.swift */,
+				4866A5632B75379000F4C8F4 /* GPUArbeitsablauf+erzeugeZufallsdaten.swift */,
 			);
 			path = "de 🇩🇪🇦🇹🇨🇭";
 			sourceTree = "<group>";
@@ -114,39 +82,39 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		481973F82B442F0F00F4535B /* GPUWorkflow */ = {
+		4866A5522B752E7600F4C8F4 /* GPUFunctions */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 481974002B442F0F00F4535B /* Build configuration list for PBXNativeTarget "GPUWorkflow" */;
+			buildConfigurationList = 4866A55A2B752E7600F4C8F4 /* Build configuration list for PBXNativeTarget "GPUFunctions" */;
 			buildPhases = (
-				481973F52B442F0F00F4535B /* Sources */,
-				481973F62B442F0F00F4535B /* Frameworks */,
-				481973F72B442F0F00F4535B /* CopyFiles */,
+				4866A54F2B752E7600F4C8F4 /* Sources */,
+				4866A5502B752E7600F4C8F4 /* Frameworks */,
+				4866A5512B752E7600F4C8F4 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = GPUWorkflow;
-			productName = GPUWorkflow;
-			productReference = 481973F92B442F0F00F4535B /* GPUWorkflow */;
+			name = GPUFunctions;
+			productName = GPUFunctions;
+			productReference = 4866A5532B752E7600F4C8F4 /* GPUFunctions */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		481973F12B442F0F00F4535B /* Project object */ = {
+		4866A54B2B752E7600F4C8F4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1510;
-				LastUpgradeCheck = 1510;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
-					481973F82B442F0F00F4535B = {
-						CreatedOnToolsVersion = 15.1;
+					4866A5522B752E7600F4C8F4 = {
+						CreatedOnToolsVersion = 15.2;
 					};
 				};
 			};
-			buildConfigurationList = 481973F42B442F0F00F4535B /* Build configuration list for PBXProject "GPUWorkflow" */;
+			buildConfigurationList = 4866A54E2B752E7600F4C8F4 /* Build configuration list for PBXProject "GPUFunctions" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -154,36 +122,32 @@
 				en,
 				Base,
 			);
-			mainGroup = 481973F02B442F0F00F4535B;
-			productRefGroup = 481973FA2B442F0F00F4535B /* Products */;
+			mainGroup = 4866A54A2B752E7600F4C8F4;
+			productRefGroup = 4866A5542B752E7600F4C8F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				481973F82B442F0F00F4535B /* GPUWorkflow */,
+				4866A5522B752E7600F4C8F4 /* GPUFunctions */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		481973F52B442F0F00F4535B /* Sources */ = {
+		4866A54F2B752E7600F4C8F4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4819740D2B443BF800F4535B /* main.swift in Sources */,
-				4819740B2B443AB700F4535B /* GPUFunção.metal in Sources */,
-				481974092B443A6700F4535B /* GPUFunction.metal in Sources */,
-				481974112B443D7100F4535B /* GPUFluxoDeTrabalho.swift in Sources */,
-				4819740F2B443CCE00F4535B /* GPUWorkflow.swift in Sources */,
-				481974072B443A3B00F4535B /* GPUFunktion.metal in Sources */,
-				481973FD2B442F0F00F4535B /* GPUArbeitsablauf.swift in Sources */,
-				4866A5672B77D1ED00F4C8F4 /* README.de.md in Sources */,
+				4866A5612B7531E700F4C8F4 /* GPUFunktion.metal in Sources */,
+				4866A5642B75379000F4C8F4 /* GPUArbeitsablauf+erzeugeZufallsdaten.swift in Sources */,
+				4866A5622B7531E700F4C8F4 /* GPUArbeitsablauf.swift in Sources */,
+				4866A5572B752E7600F4C8F4 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		481973FE2B442F0F00F4535B /* Debug */ = {
+		4866A5582B752E7600F4C8F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -246,7 +210,7 @@
 			};
 			name = Debug;
 		};
-		481973FF2B442F0F00F4535B /* Release */ = {
+		4866A5592B752E7600F4C8F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -301,7 +265,7 @@
 			};
 			name = Release;
 		};
-		481974012B442F0F00F4535B /* Debug */ = {
+		4866A55B2B752E7600F4C8F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -312,7 +276,7 @@
 			};
 			name = Debug;
 		};
-		481974022B442F0F00F4535B /* Release */ = {
+		4866A55C2B752E7600F4C8F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -326,25 +290,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		481973F42B442F0F00F4535B /* Build configuration list for PBXProject "GPUWorkflow" */ = {
+		4866A54E2B752E7600F4C8F4 /* Build configuration list for PBXProject "GPUFunctions" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				481973FE2B442F0F00F4535B /* Debug */,
-				481973FF2B442F0F00F4535B /* Release */,
+				4866A5582B752E7600F4C8F4 /* Debug */,
+				4866A5592B752E7600F4C8F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		481974002B442F0F00F4535B /* Build configuration list for PBXNativeTarget "GPUWorkflow" */ = {
+		4866A55A2B752E7600F4C8F4 /* Build configuration list for PBXNativeTarget "GPUFunctions" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				481974012B442F0F00F4535B /* Debug */,
-				481974022B442F0F00F4535B /* Release */,
+				4866A55B2B752E7600F4C8F4 /* Debug */,
+				4866A55C2B752E7600F4C8F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 481973F12B442F0F00F4535B /* Project object */;
+	rootObject = 4866A54B2B752E7600F4C8F4 /* Project object */;
 }

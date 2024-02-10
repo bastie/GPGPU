@@ -17,7 +17,7 @@ import Metal
 /// 1. With the `command queue` create the buffer for the hardware-commands
 /// 1. The concrete hardware API commands would be translated from source with the `command encoder` - we use the **ComputeCommandEncoder**
 ///
-/// |  Metal Objects | Task |
+/// | Metal Objects | Task |
 /// | --- | --- |
 /// | `device` | connection to the GPU |
 /// | `command queue` | task management for `command buffer` |

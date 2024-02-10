@@ -1,6 +1,6 @@
 # GPGPU - Computação de Propósito Geral em Unidade de Processamento Gráfico com Metal
 
-👉 [🇩🇪](README.de.md) [🇺🇸](README.md) 
+| [👉 fluxo de trabalho de programação](./GPUWorkflow/README.pt.md) | 🫵 [🇩🇪](README.de.md) [🇺🇸](README.md) | 
 ---
 
 ## Você está no lugar certo de
@@ -17,19 +17,14 @@ Para os muitos ou poucos restantes...
 
 ### The procedure for implementation
 
-Para realizar cálculos gerais na placa gráfica, além da tarefa específica de programação, o mesmo 👉[fluxo de trabalho de programação](./GPUWorkflow/):
+Para realizar cálculos gerais na placa gráfica, além da tarefa específica de programação, o mesmo [👉 fluxo de trabalho de programação](./GPUWorkflow/README.pt.md):
 
-1. Localize o `dispositivo` (device) que representa a GPU
-1. Deixe o programa conhecer a biblioteca GPU. Por padrão é o "default.metallib"
-1. Crie uma referência para a função também conhecida como "kernel" que queremos usar
-1. A partir do `dispositivo` crie a `fila de comando` para todos os comandos únicos
-1. Com a `fila de comando` crie o buffer para os comandos de hardware
-1. Os comandos concretos da API de hardware seriam traduzidos da fonte com o `command encoder` - usamos o **ComputeCommandEncoder**
 
 ## referências
 
 ### GPGPU com Metal
 
+* 🇺🇸 Swift [GPU Programming with The Metal Shading Language](https://www.youtube.com/watch?v=VQK28rRK6OU), 2etime
 * 🇺🇸 Objective-C [Performing Calculations on a GPU](https://developer.apple.com/documentation/metal/performing_calculations_on_a_gpu), Apple Inc.
 
 ### Metal

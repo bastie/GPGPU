@@ -17,7 +17,7 @@ import Metal
 /// 1. Com a `fila de comando` crie o buffer para os comandos de hardware
 /// 1. Os comandos concretos da API de hardware seriam traduzidos da fonte com o `command encoder` - usamos o **ComputeCommandEncoder**
 ///
-/// |  objetos de Metal | tarefas |
+/// | objetos de Metal | tarefas |
 /// | --- | --- |
 /// | `device` | conexão com a GPU |
 /// | `command queue` | gerenciamento de tarefas para `command buffer` |

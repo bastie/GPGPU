@@ -17,7 +17,7 @@ import Metal
 /// 1. Mit der `command queue` den Puffer für die Hardwareanweisungen zur Verfügung stellen
 /// 1. Die Hardwareanweisungen mit dem `command encoder` in die konkreten API Aufrufe übersetzen - für uns natürlich der **ComputeCommandEncoder**
 ///
-/// | Metal Objekte | Aufgabe |
+/// |  Metal Objekte | Aufgabe |
 /// | --- | --- |
 /// | `device` | Zugriff auf die GPU |
 /// | `command queue` | Aufgabenverwaltung von `command buffer` Anweisungen |
@@ -36,11 +36,18 @@ struct GPUArbeitsablauf {
   ///
   public static func main () {
     let arbeitsablauf = GPUArbeitsablauf()
-
+    arbeitsablauf.gpuBerechnung(berechnungsanzahl: 1_000_000)
+  }
+  
+  /// Berechnung auf der GPU ausführen
+  /// 
+  /// - Parameters:
+  ///   - berechnungsanzahl Anzahl der Berechnungen
+  private func gpuBerechnung (berechnungsanzahl : Int) {
     // Die GPU ermitteln
-    let gpuDevice = arbeitsablauf.lookingForGPU(andPrintInfo : false)
+    let gpuDevice = self.lookingForGPU(andPrintInfo : false)
     // Die Bibliothek mit den GPU Funktionen laden
-    let bibliothek = arbeitsablauf.ladeMetalBibliothek(für: gpuDevice)
+    let bibliothek = self.ladeMetalBibliothek(für: gpuDevice)
     // Die aufzurufende Funktion referenzieren und die "command queue" erstellen
     let aufzurufendeFunktion = "gpuFunktion"
     if let kernel = bibliothek.makeFunction(name: aufzurufendeFunktion), let commandQueue = gpuDevice.makeCommandQueue() {
@@ -64,7 +71,30 @@ struct GPUArbeitsablauf {
         if let encoder = commandBuffer.makeComputeCommandEncoder() {
           let status = try! gpuDevice.makeComputePipelineState(function: kernel)
           encoder.setComputePipelineState(status)
-          // Hier würden wir die Daten vorbereiten und nachbereiten, für die Darstellung des Arbeitsablaufs nutzen wir jedoch keine
+          
+          // MARK: neu in GPUFunktions (Teil 1 - Eingabedaten)
+          // Unsere Kernelfunktion ist definiert als:
+          /*
+           kernel void gpuFunktion (constant int* eingabe1 [[ buffer(0)]],   // Eingabedaten unveränderlich
+           constant int* eingabe2 [[ buffer(1)]],   // Eingabedaten unveränderlich
+           device int* ausgabe [[buffer(2)]],     // Ausgabedaten
+           uint index [[ thread_position_in_grid ]] // Threadnummer
+           )*/
+          // Die Eingabedaten müssen wir jetzt bereitstellen (die Ausgabedaten kommen später und die Threadnummer gibt es umsonst)
+          let eingabe1 : [Int] = erzeugeZufallsdaten(anzahl: berechnungsanzahl) // eingabe1 als int Array
+          let eingabe2 : [Int] = erzeugeZufallsdaten(anzahl: berechnungsanzahl) // eingabe2 als int Array
+
+          let eingabe1AsBuffer = gpuDevice.makeBuffer(bytes: eingabe1, length: MemoryLayout<Int>.size * berechnungsanzahl, options: .storageModeShared)
+          let eingabe2AsBuffer = gpuDevice.makeBuffer(bytes: eingabe2, length: MemoryLayout<Int>.size * berechnungsanzahl, options: .storageModeShared)
+          
+          let ausgabe : [Int] = [Int].init(repeating: 0, count: berechnungsanzahl)
+          let ausgabeAsBuffer = gpuDevice.makeBuffer(bytes:ausgabe, length: MemoryLayout<Int>.size * berechnungsanzahl, options: .storageModeShared)
+          
+          // Jetzt werden der Methode die Parameter zugewiesen
+          encoder.setBuffer(eingabe1AsBuffer, offset: 0, index: 0)
+          encoder.setBuffer(eingabe2AsBuffer, offset: 0, index: 1)
+          encoder.setBuffer(ausgabeAsBuffer, offset: 0, index: 2)
+
           
           // Wir müssen die Anzahl unserer Verarbeitungen angeben. Dies darf nicht mehr als die maximale Anzahl der Threads auf der GPU und auch nicht mehr als die maximale Anzahl der Threads pro Threadgroup sein. Bei 1024 könnte dies z.B. 2*8*64 sein oder auch 1024*1*1
           let breite = status.maxTotalThreadsPerThreadgroup
@@ -77,6 +107,14 @@ struct GPUArbeitsablauf {
           commandBuffer.commit()
           // Wir warten auf das Ende der Berechnungen
           commandBuffer.waitUntilCompleted()
+          
+          // MARK: neu in GPUFunktions (Teil 2 - Ausgabedaten)
+          var resultBufferPointer = ausgabeAsBuffer?.contents().bindMemory(to: Int.self, capacity: MemoryLayout<Int>.size * berechnungsanzahl)
+          for index in 0..<berechnungsanzahl {
+            print ("\(Int(resultBufferPointer!.pointee) as Any) = \(eingabe1[index]) + \(eingabe2[index])")
+            resultBufferPointer = resultBufferPointer?.advanced(by: 1)
+          }
+          
           
           // etwas Fehlerbehandlung, WWDC 20, Debug GPU-side errors in Metal
           if let error = commandBuffer.error as? NSError{
