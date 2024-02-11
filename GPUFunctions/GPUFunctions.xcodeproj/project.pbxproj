@@ -11,6 +11,12 @@
 		4866A5612B7531E700F4C8F4 /* GPUFunktion.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4866A55F2B7531E700F4C8F4 /* GPUFunktion.metal */; };
 		4866A5622B7531E700F4C8F4 /* GPUArbeitsablauf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866A5602B7531E700F4C8F4 /* GPUArbeitsablauf.swift */; };
 		4866A5642B75379000F4C8F4 /* GPUArbeitsablauf+erzeugeZufallsdaten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866A5632B75379000F4C8F4 /* GPUArbeitsablauf+erzeugeZufallsdaten.swift */; };
+		4866A5702B790FAD00F4C8F4 /* GPUWorkflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866A56B2B790FAD00F4C8F4 /* GPUWorkflow.swift */; };
+		4866A5712B790FAD00F4C8F4 /* GPUFunction.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4866A56C2B790FAD00F4C8F4 /* GPUFunction.metal */; };
+		4866A5722B790FAD00F4C8F4 /* GPUFluxoDeTrabalho.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866A56E2B790FAD00F4C8F4 /* GPUFluxoDeTrabalho.swift */; };
+		4866A5732B790FAD00F4C8F4 /* GPUFunção.metal in Sources */ = {isa = PBXBuildFile; fileRef = 4866A56F2B790FAD00F4C8F4 /* GPUFunção.metal */; };
+		4866A5752B79101000F4C8F4 /* GPUWorkflow+createRandomData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866A5742B79101000F4C8F4 /* GPUWorkflow+createRandomData.swift */; };
+		4866A5772B7920D000F4C8F4 /* GPUFluxoDeTrabalho+GPUWorkflow+CriaDadosAleatórios.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866A5762B7920D000F4C8F4 /* GPUFluxoDeTrabalho+GPUWorkflow+CriaDadosAleatórios.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +37,15 @@
 		4866A55F2B7531E700F4C8F4 /* GPUFunktion.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = GPUFunktion.metal; sourceTree = "<group>"; };
 		4866A5602B7531E700F4C8F4 /* GPUArbeitsablauf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUArbeitsablauf.swift; sourceTree = "<group>"; };
 		4866A5632B75379000F4C8F4 /* GPUArbeitsablauf+erzeugeZufallsdaten.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPUArbeitsablauf+erzeugeZufallsdaten.swift"; sourceTree = "<group>"; };
+		4866A5692B78E83C00F4C8F4 /* README.de.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.de.md; sourceTree = "<group>"; };
+		4866A56B2B790FAD00F4C8F4 /* GPUWorkflow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUWorkflow.swift; sourceTree = "<group>"; };
+		4866A56C2B790FAD00F4C8F4 /* GPUFunction.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = GPUFunction.metal; sourceTree = "<group>"; };
+		4866A56E2B790FAD00F4C8F4 /* GPUFluxoDeTrabalho.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPUFluxoDeTrabalho.swift; sourceTree = "<group>"; };
+		4866A56F2B790FAD00F4C8F4 /* GPUFunção.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = "GPUFunção.metal"; sourceTree = "<group>"; };
+		4866A5742B79101000F4C8F4 /* GPUWorkflow+createRandomData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPUWorkflow+createRandomData.swift"; sourceTree = "<group>"; };
+		4866A5762B7920D000F4C8F4 /* GPUFluxoDeTrabalho+GPUWorkflow+CriaDadosAleatórios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GPUFluxoDeTrabalho+GPUWorkflow+CriaDadosAleatórios.swift"; sourceTree = "<group>"; };
+		4866A5782B792C9900F4C8F4 /* README.pt.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.pt.md; sourceTree = "<group>"; };
+		4866A5792B792DFB00F4C8F4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +62,9 @@
 		4866A54A2B752E7600F4C8F4 = {
 			isa = PBXGroup;
 			children = (
+				4866A5792B792DFB00F4C8F4 /* README.md */,
+				4866A5692B78E83C00F4C8F4 /* README.de.md */,
+				4866A5782B792C9900F4C8F4 /* README.pt.md */,
 				4866A5552B752E7600F4C8F4 /* GPUFunctions */,
 				4866A5542B752E7600F4C8F4 /* Products */,
 			);
@@ -63,6 +81,8 @@
 		4866A5552B752E7600F4C8F4 /* GPUFunctions */ = {
 			isa = PBXGroup;
 			children = (
+				4866A56A2B790FAD00F4C8F4 /* en 🇺🇸🇬🇧 */,
+				4866A56D2B790FAD00F4C8F4 /* pt 🇵🇹🇧🇷 */,
 				4866A55E2B7531E700F4C8F4 /* de 🇩🇪🇦🇹🇨🇭 */,
 				4866A5562B752E7600F4C8F4 /* main.swift */,
 			);
@@ -77,6 +97,26 @@
 				4866A5632B75379000F4C8F4 /* GPUArbeitsablauf+erzeugeZufallsdaten.swift */,
 			);
 			path = "de 🇩🇪🇦🇹🇨🇭";
+			sourceTree = "<group>";
+		};
+		4866A56A2B790FAD00F4C8F4 /* en 🇺🇸🇬🇧 */ = {
+			isa = PBXGroup;
+			children = (
+				4866A56C2B790FAD00F4C8F4 /* GPUFunction.metal */,
+				4866A56B2B790FAD00F4C8F4 /* GPUWorkflow.swift */,
+				4866A5742B79101000F4C8F4 /* GPUWorkflow+createRandomData.swift */,
+			);
+			path = "en 🇺🇸🇬🇧";
+			sourceTree = "<group>";
+		};
+		4866A56D2B790FAD00F4C8F4 /* pt 🇵🇹🇧🇷 */ = {
+			isa = PBXGroup;
+			children = (
+				4866A56F2B790FAD00F4C8F4 /* GPUFunção.metal */,
+				4866A56E2B790FAD00F4C8F4 /* GPUFluxoDeTrabalho.swift */,
+				4866A5762B7920D000F4C8F4 /* GPUFluxoDeTrabalho+GPUWorkflow+CriaDadosAleatórios.swift */,
+			);
+			path = "pt 🇵🇹🇧🇷";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +177,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4866A5712B790FAD00F4C8F4 /* GPUFunction.metal in Sources */,
+				4866A5772B7920D000F4C8F4 /* GPUFluxoDeTrabalho+GPUWorkflow+CriaDadosAleatórios.swift in Sources */,
+				4866A5752B79101000F4C8F4 /* GPUWorkflow+createRandomData.swift in Sources */,
 				4866A5612B7531E700F4C8F4 /* GPUFunktion.metal in Sources */,
+				4866A5702B790FAD00F4C8F4 /* GPUWorkflow.swift in Sources */,
+				4866A5722B790FAD00F4C8F4 /* GPUFluxoDeTrabalho.swift in Sources */,
+				4866A5732B790FAD00F4C8F4 /* GPUFunção.metal in Sources */,
 				4866A5642B75379000F4C8F4 /* GPUArbeitsablauf+erzeugeZufallsdaten.swift in Sources */,
 				4866A5622B7531E700F4C8F4 /* GPUArbeitsablauf.swift in Sources */,
 				4866A5572B752E7600F4C8F4 /* main.swift in Sources */,

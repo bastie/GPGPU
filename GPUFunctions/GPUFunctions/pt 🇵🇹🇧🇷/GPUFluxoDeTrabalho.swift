@@ -36,11 +36,18 @@ struct GPUFluxoDeTrabalho {
   ///
   public static func main () {
     let fluxoDeTrabalho = GPUFluxoDeTrabalho()
-    
+    fluxoDeTrabalho.cálculoDeGPU(contagemDeCálculos: 1_000_000)
+  }
+   
+  /// Cálculo na GPU
+  ///
+  /// - Parameters:
+  ///   - countToCalculate contém quantos cálculos
+  private func cálculoDeGPU (contagemDeCálculos : Int) {
     // Obtenha a GPU
-    let gpuDispositivo = fluxoDeTrabalho.procurandoGPU(eImprimirInformações : false)
+    let gpuDispositivo = self.procurandoGPU(eImprimirInformações : false)
     // Carregar biblioteca de funções GPU
-    let biblioteca = fluxoDeTrabalho.loadMetalLibrary(for: gpuDispositivo)
+    let biblioteca = self.loadMetalLibrary(for: gpuDispositivo)
     // Faça referência à função a ser chamada e crie o commandQueue
     let callFunction = "gpuFunção"
     if let kernel = biblioteca.makeFunction(name: callFunction), let commandQueue = gpuDispositivo.makeCommandQueue() {
@@ -64,8 +71,31 @@ struct GPUFluxoDeTrabalho {
         if let encoder = commandBuffer.makeComputeCommandEncoder() {
           let status = try! gpuDispositivo.makeComputePipelineState(function: kernel)
           encoder.setComputePipelineState(status)
-          // Em outro cenário, nesta posição os dados são preparados. Neste exemplo não precisamos de dados
+
+          // MARK: novidades em GPUFunção (Parte 1 - dados de entrada)
+          // Nossa função do kernel é declarada como:
+          /*
+           kernel void gpuFunction (
+           constant int* input1 [[ buffer(0)]],        // dados de entrada somente leitura
+           constant int* input2 [[ buffer(1)]],        // dados de entrada somente leitura
+            device  int* output [[buffer(2)]],         // valor de retorno
+           uint index    [[ thread_position_in_grid ]] // thread número
+           )*/
+          // Neste ponto, precisamos fornecer os dados de entrada. Os valores de retorno vêm depois e os números dos threads são gratuitos.
+          let input1 : [Int] = criaDadosAleatórios(contagem: contagemDeCálculos) // int array input1
+          let input2 : [Int] = criaDadosAleatórios(contagem: contagemDeCálculos) // int array input2
           
+          let input1AsBuffer = gpuDispositivo.makeBuffer(bytes: input1, length: MemoryLayout<Int>.size * contagemDeCálculos, options: .storageModeShared)
+          let input2AsBuffer = gpuDispositivo.makeBuffer(bytes: input2, length: MemoryLayout<Int>.size * contagemDeCálculos, options: .storageModeShared)
+          
+          let outputAsBuffer = gpuDispositivo.makeBuffer(length: MemoryLayout<Int>.size * contagemDeCálculos, options: .storageModeShared) // sabemos o número de resultados
+          
+          // Agora registramos o parâmetro para a função de computação
+          encoder.setBuffer(input1AsBuffer, offset: 0, index: 0)
+          encoder.setBuffer(input2AsBuffer, offset: 0, index: 1)
+          encoder.setBuffer(outputAsBuffer, offset: 0, index: 2)
+          // EOM
+
           // Temos que chamar a contagem do nosso trabalho. Máximo é a contagem de threads de nossa GPU e também limitado pelo máximo de threads por grupo de threads. Por exemplo: No resultado máximo de 1024, isso pode ser 2*8*64 ou 1024*1*1
           let width = status.maxTotalThreadsPerThreadgroup
           let threadsPerGrid : MTLSize = MTLSizeMake(width,1, 1)
@@ -77,6 +107,38 @@ struct GPUFluxoDeTrabalho {
           commandBuffer.commit()
           // Queremos esperar até o fim da computação
           commandBuffer.waitUntilCompleted()
+          
+          // MARK: novo em GPUFunctions (Parte 2 - valores de retorno)
+          // Podemos trabalhar com os valores dos resultados subindo para o nível abstrato, começando com o ponteiro bruto (raw pointer), passando pelo ponteiro específico do tipo até o tipo de array Swift.
+          
+          /// Variante 1 trabalhando com ``UnsafeMutableRawPointer``. Podemos obter o resultado trypesafe com ``load(as:<T>)`` . Mas para ir para o próximo elemento, precisamos calcular a contagem de bytes a serem ignorados. Por outro lado, mais de um tipo pode ser carregado no armazém.
+          var rawPointer = outputAsBuffer?.contents()
+          
+          /// A variante 2 funciona com o tipo seguro``UnsafeMutablePoint<T>``. O valor específico é especificado via ``pointee``, um ponteiro para o elemento, mas apenas para o tipo “Any”. Em vez da variante 1, agora podemos contar confortavelmente.
+          var resultBufferPointer = rawPointer!.bindMemory(to: Int.self, capacity: MemoryLayout<Int>.size * contagemDeCálculos)
+          
+          /// A variante 3 é fornecer nosso adorável tipo Swift ``[Int]``.
+          let intBuffer = UnsafeBufferPointer (start: resultBufferPointer, count: contagemDeCálculos)
+          let returnValue = Array(intBuffer)
+          
+          var index = 0
+          for result in returnValue {
+            /// Com a variante 1, precisamos calcular o tamanho para mover o ponteiro depois de obtermos o valor com ``MemoryLayout<Int>.size``.
+            print ("raw pointer: \(rawPointer!.load(as: Int.self)) = \(input1[index]) + \(input2[index])")
+            rawPointer = rawPointer?.advanced(by: 1 * MemoryLayout<Int>.size)
+            
+            /// Para a variante 2, primeiro temos que criar um tipo ``Int`` onde o ponteiro está localizado. Em vez de calcular o tamanho da memória, podemos avançar nosso ponteiro 1.
+            print ("pointee    : \(Int(resultBufferPointer.pointee) as Any) = \(input1[index]) + \(input2[index])")
+            resultBufferPointer = resultBufferPointer.advanced(by: 1)
+            
+            /// Com a variante 3, não é necessária mais aritmética de ponteiros.
+            print("array      : \(result) = \(input1[index]) + \(input2[index])")
+            
+            print(String(repeating: "-", count: 50))
+            index += 1 // necessário apenas porque os dados de entrada são impressos
+          }
+          // EOM
+          
           
           // algum tratamento de erros, WWDC 20, Depurar erros do lado da GPU no Metal
           if let error = commandBuffer.error as? NSError{

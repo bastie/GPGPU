@@ -1,6 +1,6 @@
 # The GPU Workflow
 
-| [👆](../README.md) | 🫵 [🇩🇪](README.de.md) [🇵🇹](README.pt.md) |
+| [👆](../README.md) [👉](../GPUFunctions/README.md) | 🫵 [🇩🇪](README.de.md) [🇵🇹](README.pt.md) |
 
 ---
 

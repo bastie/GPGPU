@@ -40,7 +40,7 @@ struct GPUArbeitsablauf {
   }
   
   /// Berechnung auf der GPU ausführen
-  /// 
+  ///
   /// - Parameters:
   ///   - berechnungsanzahl Anzahl der Berechnungen
   private func gpuBerechnung (berechnungsanzahl : Int) {
@@ -72,29 +72,29 @@ struct GPUArbeitsablauf {
           let status = try! gpuDevice.makeComputePipelineState(function: kernel)
           encoder.setComputePipelineState(status)
           
-          // MARK: neu in GPUFunktions (Teil 1 - Eingabedaten)
+          // MARK: neu in GPUFunktion (Teil 1 - Eingabedaten)
           // Unsere Kernelfunktion ist definiert als:
           /*
-           kernel void gpuFunktion (constant int* eingabe1 [[ buffer(0)]],   // Eingabedaten unveränderlich
-           constant int* eingabe2 [[ buffer(1)]],   // Eingabedaten unveränderlich
-           device int* ausgabe [[buffer(2)]],     // Ausgabedaten
-           uint index [[ thread_position_in_grid ]] // Threadnummer
+           kernel void gpuFunktion (
+             constant int* eingabe1 [[ buffer(0)]],   // Eingabedaten unveränderlich
+             constant int* eingabe2 [[ buffer(1)]],   // Eingabedaten unveränderlich
+               device int* ausgabe  [[buffer(2)]],    // Ausgabedaten
+                      uint index    [[ thread_position_in_grid ]] // Threadnummer
            )*/
           // Die Eingabedaten müssen wir jetzt bereitstellen (die Ausgabedaten kommen später und die Threadnummer gibt es umsonst)
           let eingabe1 : [Int] = erzeugeZufallsdaten(anzahl: berechnungsanzahl) // eingabe1 als int Array
           let eingabe2 : [Int] = erzeugeZufallsdaten(anzahl: berechnungsanzahl) // eingabe2 als int Array
 
-          let eingabe1AsBuffer = gpuDevice.makeBuffer(bytes: eingabe1, length: MemoryLayout<Int>.size * berechnungsanzahl, options: .storageModeShared)
-          let eingabe2AsBuffer = gpuDevice.makeBuffer(bytes: eingabe2, length: MemoryLayout<Int>.size * berechnungsanzahl, options: .storageModeShared)
+          let eingabe1AlsPuffer = gpuDevice.makeBuffer(bytes: eingabe1, length: MemoryLayout<Int>.size * berechnungsanzahl, options: .storageModeShared)
+          let eingabe2AlsPuffer = gpuDevice.makeBuffer(bytes: eingabe2, length: MemoryLayout<Int>.size * berechnungsanzahl, options: .storageModeShared)
           
-          let ausgabe : [Int] = [Int].init(repeating: 0, count: berechnungsanzahl)
-          let ausgabeAsBuffer = gpuDevice.makeBuffer(bytes:ausgabe, length: MemoryLayout<Int>.size * berechnungsanzahl, options: .storageModeShared)
+          let ausgabeAlsPuffer = gpuDevice.makeBuffer(length: MemoryLayout<Int>.size * berechnungsanzahl, options: .storageModeShared) // wir kennen die Länge unseres Ergebnisses
           
           // Jetzt werden der Methode die Parameter zugewiesen
-          encoder.setBuffer(eingabe1AsBuffer, offset: 0, index: 0)
-          encoder.setBuffer(eingabe2AsBuffer, offset: 0, index: 1)
-          encoder.setBuffer(ausgabeAsBuffer, offset: 0, index: 2)
-
+          encoder.setBuffer(eingabe1AlsPuffer, offset: 0, index: 0)
+          encoder.setBuffer(eingabe2AlsPuffer, offset: 0, index: 1)
+          encoder.setBuffer(ausgabeAlsPuffer, offset: 0, index: 2)
+          // EOM
           
           // Wir müssen die Anzahl unserer Verarbeitungen angeben. Dies darf nicht mehr als die maximale Anzahl der Threads auf der GPU und auch nicht mehr als die maximale Anzahl der Threads pro Threadgroup sein. Bei 1024 könnte dies z.B. 2*8*64 sein oder auch 1024*1*1
           let breite = status.maxTotalThreadsPerThreadgroup
@@ -108,13 +108,35 @@ struct GPUArbeitsablauf {
           // Wir warten auf das Ende der Berechnungen
           commandBuffer.waitUntilCompleted()
           
-          // MARK: neu in GPUFunktions (Teil 2 - Ausgabedaten)
-          var resultBufferPointer = ausgabeAsBuffer?.contents().bindMemory(to: Int.self, capacity: MemoryLayout<Int>.size * berechnungsanzahl)
-          for index in 0..<berechnungsanzahl {
-            print ("\(Int(resultBufferPointer!.pointee) as Any) = \(eingabe1[index]) + \(eingabe2[index])")
-            resultBufferPointer = resultBufferPointer?.advanced(by: 1)
-          }
+          // MARK: neu in GPUFunktion (Teil 2 - Ausgabedaten)
           
+          /// Variante 1 ist über einen ``UnsafeMutableRawPointer`` zu arbeiten. Dabei können die Werte typsicher bereitgestellt werden über ``load(as:<T>)`` . Beim iterieren zum nächsten Element müssen wir jedoch die Byteanzahl genau angeben. Entsprechend auch mehrere unterschiedliche Typen nacheinander geladen werden.
+          var rawPointer = ausgabeAlsPuffer?.contents()
+
+          /// Variante 2 ist mit einen typsicheren ``UnsafeMutablePoint<T>`` zu arbeiten. Die Werte werden jetzt über einen ``pointee`` auf das jeweilige Element allerdings nur noch als ``Any`` bereitgestellt. Um zum nächsten Element zu gelangen können wir jetzt jedoch bequemer hochzählen.
+          var resultBufferPointer = rawPointer!.bindMemory(to: Int.self, capacity: MemoryLayout<Int>.size * berechnungsanzahl)
+          
+          /// Variante 3 ist wieder ein Swift Typ, hier unser ``[Int]`` bereitzustellen.
+          let intBuffer = UnsafeBufferPointer (start: resultBufferPointer, count: berechnungsanzahl)
+          let ausgabe = Array(intBuffer)
+          
+          var index = 0
+          for ergebnis in ausgabe {
+            /// Bei der Variante 1 müssen wir nach dem bereitstellen des Typ ``Int`` auch den Zeiger um die Größe dessen mit ``MemoryLayout<Int>.size`` verschieben und um zum nächsten Element zu kommen genau ein mal.
+            print ("raw pointer: \(rawPointer!.load(as: Int.self)) = \(eingabe1[index]) + \(eingabe2[index])")
+            rawPointer = rawPointer?.advanced(by: 1 * MemoryLayout<Int>.size)
+            
+            /// Bei der Veriante 2 müssen wir den Wert an der Stelle des Zeiger zunächst als einen ``Int`` Type bereitstellen. Dafür entfällt das Berechnen wie weit unser Zeiger zu verschieben ist und wir können direkt diesen um ein Element vorschieben.
+            print ("pointee    : \(Int(resultBufferPointer.pointee) as Any) = \(eingabe1[index]) + \(eingabe2[index])")
+            resultBufferPointer = resultBufferPointer.advanced(by: 1)
+            
+            /// Mit der Variante 3 haben wir die Welt der Zeiger bereits verlassen und müssen uns keine Gedanken mehr über die Zeiger machen.
+            print("array      : \(ergebnis) = \(eingabe1[index]) + \(eingabe2[index])")
+            
+            print(String(repeating: "-", count: 50))
+            index += 1 // wird nur benötigt, da wir die Eingabedaten anzeigen lassen wollen
+          }
+          // EOM
           
           // etwas Fehlerbehandlung, WWDC 20, Debug GPU-side errors in Metal
           if let error = commandBuffer.error as? NSError{

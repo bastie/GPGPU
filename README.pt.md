@@ -18,7 +18,10 @@ Para os muitos ou poucos restantes...
 
 ### The procedure for implementation
 
-Para realizar cálculos gerais na placa gráfica, além da tarefa específica de programação, o mesmo [👉 fluxo de trabalho de programação](./GPUWorkflow/README.pt.md):
+Para realizar cálculos gerais na placa gráfica, além da tarefa específica de programação: 
+
+* a [👉 fluxo de trabalho de programação](./GPUWorkflow/README.pt.md)
+* a [👉 chamada de função Metal](./GPUFunctions/README.pt.md)
 
 
 ## referências

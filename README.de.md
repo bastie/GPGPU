@@ -18,7 +18,10 @@ Für die vielen oder wenigen Verbliebenen...
 
 ### Das Vorgehen zur Umsetzung
 
-Um allgemeine Berechnungen auf der Grafikkarte durchzuführen ist von der konkreten Programmieraufgabe abgesehen grds. stets der gleicher [👉 Arbeitsablauf zu programmieren](./GPUWorkflow/README.de.md):
+Um allgemeine Berechnungen auf der Grafikkarte durchzuführen ist von der konkreten Programmieraufgabe abgesehen grds. stets:
+
+* den [👉 Arbeitsablauf zu programmieren](./GPUWorkflow/README.de.md)
+* der [👉 Aufruf der Metal Funktion](./GPUFunctions/README.de.md) 
 
 
 

@@ -1,6 +1,6 @@
 # Der GPU Arbeitsablauf
 
-| [👆](../README.de.md) | 🫵 [🇺🇸](README.md) [🇵🇹](README.pt.md) |
+| [👆](../README.de.md) [👉](../GPUFunctions/README.de.md) | 🫵 [🇺🇸](README.md) [🇵🇹](README.pt.md) |
 
 ---
 

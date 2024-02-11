@@ -1,6 +1,6 @@
 # O fluxo de trabalho da GPU
 
-| [👆](../README.pt.md) | 🫵 [🇩🇪](README.de.md) [🇺🇸](README.md) | 
+| [👆](../README.pt.md) [👉](../GPUFunctions/README.pt.md) | 🫵 [🇩🇪](README.de.md) [🇺🇸](README.md) | 
 
 ---
 

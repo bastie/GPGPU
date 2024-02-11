@@ -18,7 +18,10 @@ For the many or few remaining...
 
 ### The procedure for implementation
 
-In order to carry out general calculations on the graphics card, apart from the specific programming task, the same [👉 programming workflow](./GPUWorkflow/README.md):
+In order to carry out general calculations on the graphics card, apart from the specific programming task:
+
+* the [👉 programming workflow](./GPUWorkflow/README.md)
+* the [👉 Metal function call](./GPUFunctions/README.md)
 
 
 ## references
