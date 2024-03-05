@@ -23,6 +23,9 @@ Um allgemeine Berechnungen auf der Grafikkarte durchzuführen ist von der konkre
 * den [👉 Arbeitsablauf zu programmieren](./GPUWorkflow/README.de.md)
 * der [👉 Aufruf der Metal Funktion](./GPUFunctions/README.de.md) 
 
+# Beispiele
+
+* metal-base64 implementiert das Base64-encoding mit Hilfe der GPU.
 
 
 ## Quellen

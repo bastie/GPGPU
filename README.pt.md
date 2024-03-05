@@ -23,6 +23,9 @@ Para realizar cálculos gerais na placa gráfica, além da tarefa específica de
 * a [👉 fluxo de trabalho de programação](./GPUWorkflow/README.pt.md)
 * a [👉 chamada de função Metal](./GPUFunctions/README.pt.md)
 
+## exemplo
+
+* metal-base64 implementa a codificação Base64 usando a GPU.
 
 ## referências
 

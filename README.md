@@ -23,6 +23,9 @@ In order to carry out general calculations on the graphics card, apart from the 
 * the [👉 programming workflow](./GPUWorkflow/README.md)
 * the [👉 Metal function call](./GPUFunctions/README.md)
 
+## examples
+
+* metal-base64 example implements the base64 encoding with GPGPU.
 
 ## references
 
